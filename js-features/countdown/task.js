@@ -5,6 +5,6 @@ function newAccount() {
         alert("Вы победили в конкурсе!");
         return
     }
-    currentAccount.textContent++;
+    currentAccount.textContent--;
 }
 setInterval(newAccount, 1000);

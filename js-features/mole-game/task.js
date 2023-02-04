@@ -1,8 +1,7 @@
 
 let dead = document.getElementById('dead')
 let lost = document.getElementById('lost');
-const cell = document.getElementsByClassName('hole');
-Array.from(cell).forEach((item) => {
+[...document.getElementsByClassName('hole')].forEach((item) => {
     item.onclick = () => {
         if(item.className.includes('hole hole_has-mole')) {
             dead.textContent++;
@@ -16,9 +15,8 @@ Array.from(cell).forEach((item) => {
             }
         }
         if(dead.textContent == 10 || lost.textContent == 5) {
-            dead.textContent = 0
+            dead.textContent = 0;
             lost.textContent = 0;
         }
     }
-    
 })
