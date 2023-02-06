@@ -1,10 +1,16 @@
-const dropdownList = Array.from(document.getElementsByClassName('dropdown__list'));
-function handler(index) {
-    dropdownList[index].classList.add('dropdown__list_active');
+const dropdownList = Array.from(document.getElementsByClassName('dropdown__item'))
+let dropdownValue = document.querySelector('.dropdown__value');
+function carrentText(text) {
+    dropdownValue.textContent = text;
 }
-console.log(dropdownList)
-dropdownList.forEach((item, index) => {
-    console.log(item)
-    item.addEventListener('click', handler(index));
+Array.from(document.querySelectorAll('.dropdown')).forEach(element => {
+    element.onclick = () => {
+        document.querySelector('.dropdown__list').classList.toggle('dropdown__list_active');
+        dropdownList.forEach((item) => {
+            item.onclick = (evt) => {
+                evt.preventDefault();
+                item.addEventListener('click', carrentText(item.querySelector('.dropdown__link').textContent))
+            }
+        })
     }
-)
+})
