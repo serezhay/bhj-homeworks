@@ -1,4 +1,3 @@
-document.querySelector('.chat-widget').classList.add('chat-widget_active')
 document.querySelector('.chat-widget').addEventListener('click', () => {
     document.querySelector('.chat-widget').classList.add('chat-widget_active')
 })
