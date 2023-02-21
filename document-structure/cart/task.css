@@ -89,3 +89,8 @@ body {
 .product-shadow {
   position: absolute;
 }
+
+.cart__product-remove {
+  display: flex;
+  margin: 6px auto;
+}

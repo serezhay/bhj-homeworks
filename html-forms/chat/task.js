@@ -20,11 +20,11 @@ chatInput.addEventListener('keydown', (event) => {
                 <div class="message__text">${chatInput.value}</div>
             </div>
             <div class="message">
-                            <div class="message__time">${time()}</div>
-                            <div class="message__text">${messageRobot[Math.floor(Math.random()*messageRobot.length)]}</div>
-                        </div>
+                <div class="message__time">${time()}</div>
+                <div class="message__text">${messageRobot[Math.floor(Math.random()*messageRobot.length)]}</div>
+            </div>
         `
         chatInput.value = '';
-        document.querySelector('.chat-widget__messages-container').scrollTop = document.querySelector('.chat-widget__messages-container').scrollHeight
+        document.querySelector('.chat-widget__messages-container').scrollTop = document.querySelector('.chat-widget__messages-container').scrollHeight;
     }
 })
