@@ -1,4 +1,4 @@
-let xhr = new XMLHttpRequest();
+const xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://students.netoservices.ru/nestjs-backend/slow-get-courses')
 xhr.getResponseHeader('CharCode', 'Value')
 xhr.send()

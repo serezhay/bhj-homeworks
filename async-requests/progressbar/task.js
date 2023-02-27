@@ -5,22 +5,27 @@ document.getElementById('form').addEventListener('submit', (e) => {
     const xhr = new XMLHttpRequest();
     progress.setAttribute('value', '0');
     xhr.addEventListener('readystatechange', () => {
-        xhr.upload.onprogress = (evt) => {
-            const download = document.createElement('div');
-            download.classList.add('download')
-            download.textContent = '<p>Идет загрузка</p>';
-            progress.setAttribute('value', evt.loaded)
-        } 
-        xhr.upload.onload = () => {
-            const download = document.createElement('div');
-            download.classList.add('download')
-            download.innerHTML = '<p>Загрузка завершена</p>';
-            console.log(download)
-            progress.insertAdjacentHTML('afterend', download.textContent)
+
+        xhr.upload.onloadstart = () => {
+            if (document.querySelector('.download')) {
+                document.querySelector('.download').textContent = 'Загрузка началась';
+            } else {
+                const download = document.createElement('div');
+                download.classList.add('download');
+                download.textContent = 'Загрузка началась';
+                progress.insertAdjacentElement('afterend', download)
+            }
         }
-        xhr.upload.onerror = () => {
-            alert('Произошла ошибка!' );
-          }
+
+        xhr.upload.onprogress = (evt) => {
+            document.querySelector('.download').textContent = 'Идет загрузка';
+            progress.max = evt.total
+            progress.value = evt.loaded;
+        }
+        
+        xhr.upload.onload = () => {
+            document.querySelector('.download').textContent = 'Загрузка завершена';
+        }
     })
 
     const formData = new FormData(document.getElementById('form'));
