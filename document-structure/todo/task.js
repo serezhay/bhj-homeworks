@@ -1,29 +1,23 @@
 const taskInput = document.getElementById('task__input');
 
 function taskAdd() {
-    document.getElementById('tasks__list').insertAdjacentHTML('afterend', `
-        <div class="task">
-            <div class="task__title">
-                ${taskInput.value}
-            </div>
-            <a href="#" class="task__remove">&times;</a>
+    const task = document.createElement('div');
+    task.classList.add('task')
+    task.innerHTML = `
+        <div class="task__title">
+            ${taskInput.value}
         </div>
-        `)
-        const close = document.querySelectorAll('.task__remove');
-        for (let i of close) {
-            i.addEventListener('click', () => {
-                i.parentElement.remove();
-            })
-        }
+        <a href="#" class="task__remove">&times;</a>`
+    console.log(task)
+    document.getElementById('tasks__list').insertAdjacentElement('beforeend', task);
+    task.querySelector('.task__remove').addEventListener('click', () => {
+        task.querySelector('.task__remove').parentElement.remove();
+    })
         taskInput.value = '';
 }
 
-taskInput.addEventListener('keydown', (event) => {
-    if(event.key === 'Enter' || document.getElementById('tasks__add').onclick === true && taskInput.value.trim().length !== 0) {
-        taskAdd();
-        event.preventDefault();
-    }
-})
-document.getElementById('tasks__add').onclick = () => {
+document.getElementById('tasks__add').onclick = (evt) => {
+    if(taskInput.value.trim().length !== 0)
+    evt.preventDefault();
     taskAdd();
 }

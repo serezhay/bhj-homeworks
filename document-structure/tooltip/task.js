@@ -4,17 +4,12 @@ tooltip.classList.add('tooltip');
 for (let i of hasTooltip) {
     i.addEventListener('click', (evt) => {
         evt.preventDefault() ;
-        let place = i.getBoundingClientRect();
-        // let left = place.left;
-        // let top = place.bottom;
-        let {left, bottom} = place;
+        const place = i.getBoundingClientRect();
+        const {left, bottom} = place;
         tooltip.style.left = left + 'px';
-        tooltip.style.top = top + 'px';
+        tooltip.style.top = bottom + 'px';
         tooltip.textContent = i.getAttribute('title');
-        // i.insertAdjacentElement('beforebegin', tooltip).classList.add('tooltip_active');
+        i.insertAdjacentElement('beforebegin', tooltip).classList.toggle('tooltip_active');
         i.insertAdjacentElement('beforebegin', tooltip);
-        tooltip.classList.add('tooltip_active');
-        console.log(tooltip.getAttribute('data-position'))
-        
     })
 }
