@@ -17,7 +17,7 @@ function taskAdd() {
 }
 
 document.getElementById('tasks__add').onclick = (evt) => {
-    if(taskInput.value.trim().length !== 0)
     evt.preventDefault();
+    if(taskInput.value.trim().length !== 0)
     taskAdd();
 }
